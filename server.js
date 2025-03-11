@@ -11,9 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const con = sql.createConnection(
   {
-    host : 'database-2.c7gs8uw62z91.eu-north-1.rds.amazonaws.com',
+    host : 'localhost',
     user : 'admin',
-    password : 'rootadmin',
+    password : 'root',
     database : 'cruise_ship',
     port : 3306
   }
