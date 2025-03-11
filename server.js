@@ -229,14 +229,14 @@ app.post("/booksalon", (req, res) => {
   const orderDate = new Date().toISOString().split("T")[0];
   const category = "beautySalon";
 
-  // 🔸 Calculate Total Amount
+  
   const totalAmount = Object.values(cart).reduce((sum, item) => {
     return sum + (item.Price ?? 0) * item.quantity;
   }, 0);
 
   console.log("Total Amount:", totalAmount);
 
-  // 🔸 Insert into Orders Table
+  
   const orderQuery = "INSERT INTO Orders (OrderDate, CustomerID, Amount, Category) VALUES (?, ?, ?, ?)";
   con.query(orderQuery, [orderDate, userId, totalAmount, category], (err, results) => {
     if (err) return res.status(500).json({ msg: "Error inserting order", error: err });
@@ -244,7 +244,7 @@ app.post("/booksalon", (req, res) => {
     const orderId = results.insertId;
     console.log("New Order ID:", orderId);
 
-    // 🔸 Insert into OrderItems Table
+    
     const insertPromises = Object.values(cart).map((item) => {
       return new Promise((resolve, reject) => {
         const query = "INSERT INTO SalonOrderItems (OrderID, ItemID, Quantity) VALUES (?, ?, ?)";
@@ -331,14 +331,14 @@ app.post("/bookmovies", (req, res) => {
   const orderDate = new Date().toISOString().split("T")[0];
   const category = "movie";
 
-  // 🔸 Calculate Total Amount
+  
   const totalAmount = Object.values(cart).reduce((sum, item) => {
     return sum + (item.Price ?? 0) * item.quantity;
   }, 0);
 
   console.log("Total Amount:", totalAmount);
 
-  // 🔸 Insert into Orders Table
+  
   const orderQuery = "INSERT INTO Orders (OrderDate, CustomerID, Amount, Category) VALUES (?, ?, ?, ?)";
   con.query(orderQuery, [orderDate, userId, totalAmount, category], (err, results) => {
     if (err) return res.status(500).json({ msg: "Error inserting order", error: err });
@@ -346,7 +346,7 @@ app.post("/bookmovies", (req, res) => {
     const orderId = results.insertId;
     console.log("New Order ID:", orderId);
 
-    // 🔸 Insert into OrderItems Table
+    
     const insertPromises = Object.values(cart).map((item) => {
       return new Promise((resolve, reject) => {
         const query = "INSERT INTO MovieBooking (OrderID, MovieID, Quantity) VALUES (?, ?, ?)";
@@ -368,7 +368,7 @@ app.post("/bookmovies", (req, res) => {
 
 
 
-// 📌 Fetch movie bookings with movie details
+//  Fetch movie bookings with movie details
 app.get("/getMovieBookings", (req, res) => {
   const query = `
     SELECT 
@@ -404,14 +404,14 @@ app.post("/bookgymservice", (req, res) => {
   const orderDate = new Date().toISOString().split("T")[0];
   const category = "gym";
 
-  // 🔸 Calculate Total Amount
+ 
   const totalAmount = Object.values(cart).reduce((sum, item) => {
     return sum + (item.Price ?? 0) * item.quantity;
   }, 0);
 
   console.log("Total Amount:", totalAmount);
 
-  // 🔸 Insert into Orders Table
+ 
   const orderQuery = "INSERT INTO Orders (OrderDate, CustomerID, Amount, Category) VALUES (?, ?, ?, ?)";
   con.query(orderQuery, [orderDate, userId, totalAmount, category], (err, results) => {
     if (err) return res.status(500).json({ msg: "Error inserting order", error: err });
@@ -419,7 +419,7 @@ app.post("/bookgymservice", (req, res) => {
     const orderId = results.insertId;
     console.log("New Order ID:", orderId);
 
-    // 🔸 Insert into OrderItems Table
+  
     const insertPromises = Object.values(cart).map((item) => {
       return new Promise((resolve, reject) => {
         const query = "INSERT INTO GymOrderItems (OrderID, ItemID, Quantity) VALUES (?, ?, ?)";
